@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+  <meta charset="utf-8" /><meta
+    name="viewport"
+    content="width=device-width,initial-scale=1"
+  /><title>Light KWriter</title
+  ><link rel="stylesheet" href="style.css" />
+  <header>
+    <div class="brand">
+      <svg
+        class="icon"
+        viewBox="0 0 100 100"
+        role="img"
+        aria-label="Light KWriter icon"
+      >
+        <rect width="100" height="100" rx="24" fill="#fff" />
+        <rect x="20" y="17" width="60" height="20" rx="10" fill="#ff9814" />
+        <rect x="20" y="42" width="44" height="16" rx="8" fill="#8b50fb" />
+        <circle cx="29" cy="73" r="11" fill="#25b777" />
+        <rect x="44" y="62" width="36" height="22" rx="11" fill="#2c86ff" />
+      </svg>
+      <div><strong>Light KWriter</strong><small>Space to write</small></div>
+    </div>
+    <div class="status" id="connectionStatus">
+      <span class="dot"></span><span id="connection">Not connected</span>
+    </div>
+    <button id="togglePreview" aria-expanded="true">Hide preview</button
+    ><button id="orientationToggle" popovertarget="orientationMenu">
+      Landscape ▾</button
+    ><select id="transport" aria-label="Connection type">
+      <option value="usb">USB cable</option>
+      <option value="wifi">Wi-Fi</option></select
+    ><button id="pair">Pair Wi-Fi</button
+    ><button id="connect">Connect Kindle</button>
+  </header>
+  <main class="writer">
+    <section class="paper">
+      <div class="paper-heading">
+        <span class="eyebrow">Your draft</span>
+        <div class="row">
+          <button id="import" class="quiet">Open .txt</button
+          ><input
+            type="file"
+            id="file"
+            accept=".txt,text/plain"
+            hidden
+          /><button id="download" class="quiet">Export .txt</button>
+        </div>
+      </div>
+      <textarea
+        id="draft"
+        aria-label="Writing draft"
+        placeholder="A little space to think. Start writing…"
+        spellcheck="true"
+      ></textarea>
+      <div class="editor-foot">
+        <span id="wordCount">0 words</span
+        ><span id="saved">Saved on this computer</span>
+      </div>
+    </section>
+    <aside id="inspector" class="inspector">
+      <h2>On your e-reader</h2>
+      <div class="device">
+        <canvas
+          id="preview"
+          width="800"
+          height="600"
+          aria-label="E-reader preview"
+        ></canvas>
+      </div>
+      <div class="preview-label">
+        <span>800 × 600</span><span>Live preview</span>
+      </div>
+      <p class="muted">The latest part of your draft, with room to breathe.</p>
+      <div class="field">
+        <label for="size">Text size</label
+        ><select id="size">
+          <option value="24">Comfortable</option>
+          <option value="30">Large</option>
+          <option value="40">Extra large</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="rotation">Cable position</label
+        ><select id="rotation">
+          <option value="3">Right · landscape</option>
+          <option value="1">Left · landscape</option>
+          <option value="0">Bottom · portrait</option>
+          <option value="2">Top · portrait</option>
+        </select>
+      </div>
+      <button id="refresh">Clear old screen marks</button>
+      <p class="notice">
+        You can unplug and keep writing. Reconnect to send your latest draft.
+      </p>
+      <div id="message" class="toast" role="status"></div>
+    </aside>
+  </main>
+  <div id="orientationMenu" popover>
+    <h2>Screen orientation</h2>
+    <p class="muted">Choose where the cable connects.</p>
+    <div class="orientation-options">
+      <button data-rotation="3" aria-label="Cable right">
+        <span class="orientation-device right"></span
+        ><span>Cable right</span></button
+      ><button data-rotation="1" aria-label="Cable left">
+        <span class="orientation-device left"></span
+        ><span>Cable left</span></button
+      ><button data-rotation="0" aria-label="Cable bottom">
+        <span class="orientation-device bottom"></span
+        ><span>Cable bottom</span></button
+      ><button data-rotation="2" aria-label="Cable top">
+        <span class="orientation-device top"></span><span>Cable top</span>
+      </button>
+    </div>
+    <p class="notice">The layout adjusts without restarting your session.</p>
+  </div>
+  <footer>
+    <span>Your draft stays on this computer.</span><span id="latency"></span>
+  </footer>
+  <script src="common.js"></script>
+  <script src="app.js"></script>
+</html>
